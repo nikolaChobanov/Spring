@@ -1,0 +1,191 @@
+#include <iostream>
+
+using namespace std;
+
+template <class T>
+struct node
+{
+    T inf;
+    node<T> *left,*right;
+};
+template<class T>
+class Bintree
+{
+private:
+node<T> *root;
+void DeleteBinTree(node<T>* &) const;
+void Copy(node<T>* &, node<T>* const&) const;
+void CopyBinTree(Bintree<T> const&);
+void pr(const node<T> *) const;
+void CreateBinTree(node<T> * &) const;
+public:
+    Bintree();
+    ~ Bintree();
+     Bintree(Bintree<T> const&);
+      Bintree& operator=( Bintree<T> const&);
+      T RootBintree() const;
+       Bintree<T> LeftBintree()const;
+       Bintree<T> RightBintree() const;
+       node<T>* Getroot();
+       bool empty() const;
+       void print() const;
+       void Create();
+       void create3(T, Bintree<T> , Bintree<T>);
+};
+
+template<class T>
+Bintree<T>::Bintree()
+{
+    root=NULL;
+}
+template<class T>
+Bintree<T>::~Bintree()
+{
+    DeleteBinTree(root);
+}
+ template<class T>
+ Bintree<T>::Bintree(Bintree<T> const& r)
+ {
+     CopyBinTree(r);
+ }
+
+ template<class T>
+ Bintree<T>& Bintree<T>::operator=(Bintree<T> const& r)
+ {
+     if(this !=&r)
+     {
+         DeleteBinTree(root);
+         CopyBinTree(r);
+     }
+     return *this;
+ }
+
+ template<class T>
+ void Bintree<T>::DeleteBinTree(node<T>* &p)const
+ {
+ if(p)
+ {
+     DeleteBinTree(p->left);
+     DeleteBinTree(p->right);
+     delete p;
+     p=NULL;
+ }
+
+ }
+ template<class T>
+ void Bintree<T>::CopyBinTree(Bintree<T> const& r)
+ {
+     Copy(root,r.root);
+ }
+
+template<class T>
+void Bintree<T>::Copy(node<T> * & pos, node<T>* const &r) const
+{
+    pos = NULL;
+    if(r)
+    {
+        pos = new node<T>;
+        pos -> inf= r->inf;
+        Copy(pos->left , r->left);
+        Copy(pos-> right , r->right);
+    }
+}
+
+ template<class T>
+ bool Bintree<T>::empty() const
+ {
+ return root==NULL;
+ }
+
+ template<class T>
+ T Bintree<T>::RootBintree() const
+ {
+     return root->inf;
+ }
+
+
+ template<class T>
+ node<T>* Bintree<T>::Getroot()
+ {
+     return root;
+ }
+
+ template<class T>
+ Bintree<T> Bintree<T>::LeftBintree()const
+
+ {
+     Bintree<T> t;
+     Copy(t.root , root->left);
+     return t;
+ }
+template<class T>
+Bintree<T> Bintree<T>::RightBintree() const
+{
+    Bintree<T> t;
+    Copy(t.root , root->right);
+    return t;
+}
+template<class T>
+void Bintree<T>::pr(const node<T>* p) const
+{
+    if(p)
+    {
+        pr(p->left);
+        cout<<p->inf<<" ";
+        pr(p->right);
+    }
+}
+template<class T>
+void Bintree<T>::print() const
+{
+    pr(root);
+}
+
+template<class T>
+void Bintree<T>::create3(T x, Bintree<T> l, Bintree<T> r)
+{
+    root= new node<T>;
+    root->inf=x;
+    Copy(root-> left, l.root);
+    Copy(root->right , r.root);
+}
+
+template<class T>
+void Bintree<T>::CreateBinTree(node<T>* & pos)const
+{
+    T x; char c;
+    cout<<"root: ";
+    cin>>x;
+
+    pos = new node<T>;
+    pos-> inf =x;
+    pos->left=NULL;
+        pos->right=NULL;
+
+        cout<<"left bintree of: "<<x<<"y/n?";
+        cin>>c;
+        if(c=='y') CreateBinTree(pos->left);
+
+        cout<<"right bintree of: "<<x<<"y/n?";
+        cin>>c;
+        if(c=='y') CreateBinTree(pos->right);
+}
+    template<class T>
+    void Bintree<T>::Create()
+    {
+        CreateBinTree(root);
+    }
+
+
+
+
+
+int main()
+{
+    Bintree<int> binTree;
+    binTree.Create();
+    binTree.print();
+
+    //system("pause");
+    return 0;
+}
