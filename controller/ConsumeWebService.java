@@ -1,7 +1,5 @@
 package com.tutorialspoint.demo.controller;
 
-//import com.tutorialspoint.demo.model.Product;
-
 import com.tutorialspoint.demo.model.Robot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
