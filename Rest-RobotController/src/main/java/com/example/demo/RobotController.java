@@ -40,23 +40,12 @@ public class RobotController {
     EntityModel<Robot> one(@PathVariable Integer id) {
         Robot robot = robotRepository.findById(id).orElseThrow(() -> new RobotDoesNotExistException(id));
 
-      /*  return new EntityModel<>(robot,
-                linkTo(methodOn(RobotController.class).one(id)).withSelfRel(),
-                linkTo(methodOn(RobotController.class).all()).withRel("robot"));
-*/
         return assembler.toModel(robot);
     }
 
     @GetMapping("/robot")
     CollectionModel<EntityModel<Robot>> all() {
 
-      /*  List<EntityModel<Robot>> robots = robotRepository.findAll().stream()
-                .map(robot -> new EntityModel<>(robot,
-                        linkTo(methodOn(RobotController.class).one(robot.getId())).withSelfRel(),
-                        linkTo(methodOn(RobotController.class).all()).withRel("robots")))
-                .collect(Collectors.toList());
-
-*/
         List<EntityModel<Robot>> robots = robotRepository.findAll().stream().map(assembler::toModel).collect(Collectors.toList());
         return new CollectionModel<>(robots,
                 linkTo(methodOn(RobotController.class).all()).withSelfRel());
