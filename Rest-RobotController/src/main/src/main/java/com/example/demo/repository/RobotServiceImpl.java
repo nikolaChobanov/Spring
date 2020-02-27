@@ -23,22 +23,6 @@ public class RobotServiceImpl implements RobotService {
         return robotRepository.findRobotById(id);
     }
 
-
-    @Override
-    public void updateDirection(Robot robot) {
-
-    }
-
-    @Override
-    public void updateX(Robot robot) {
-
-    }
-
-    @Override
-    public void updateY(Robot robot) {
-
-    }
-
     @Override
     public void deleteRobot(String id) {
         robotRepository.deleteById(id);
