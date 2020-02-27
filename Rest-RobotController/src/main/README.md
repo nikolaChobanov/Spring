@@ -19,4 +19,5 @@ Robot movements are set with a letter string e.g. "RAALAL" which means
   - Turn left
   
   Data is saved to MongoDB
+  
   Logs are saved to Logs.log file
