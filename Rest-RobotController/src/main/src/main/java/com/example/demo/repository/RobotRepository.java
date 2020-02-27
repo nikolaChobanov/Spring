@@ -9,9 +9,7 @@ import java.util.Optional;
 
 public interface RobotRepository extends MongoRepository<Robot, String> {
 
-    /*public Robot findByFirstName(String firstName);
-    public List<Robot> findByLastName(String lastName);*/
     Optional<Robot> findRobotById(@Param("id") String name);
-  //  List<Robot> findAllRobots();
+
 
 }
