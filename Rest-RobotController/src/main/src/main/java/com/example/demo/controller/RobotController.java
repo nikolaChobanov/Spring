@@ -120,6 +120,21 @@ public class RobotController {
                 .status(HttpStatus.METHOD_NOT_ALLOWED)
                 .body(new VndErrors.VndError("Robot deletion", " robot was deleted successfully"));
     }
+    
+    //Clear repository
+    @DeleteMapping(value = "/all")
+    ResponseEntity<VndErrors.VndError> delRobot() {
+        List<EntityModel<Robot>> robots = robotService.findAll().stream()
+                .map(assembler::toModel).collect(Collectors.toList());
+
+        for (Robot robot : robotService.findAll()) {
+            robotService.deleteRobot(robot.getId());
+        }
+        LOGGER.info("Database was cleared, all robots deleted");
+        return ResponseEntity
+                .status(HttpStatus.METHOD_NOT_ALLOWED)
+                .body(new VndErrors.VndError("Database clear", "All robots were deleted successfully"));
+    }
 
     //Remove robot pointing to a wrong direction
     @DeleteMapping(value = "/{id}/del")
