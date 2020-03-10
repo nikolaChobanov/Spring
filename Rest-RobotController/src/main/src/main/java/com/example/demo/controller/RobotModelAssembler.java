@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+//Helper class that eases link creation by implementing Spring HATEOAS
+//If the robot is pointing to an invalid direction it creates two links
+//one to fix the pointing direction and another to delete the robot.
 @Component
 public class RobotModelAssembler implements RepresentationModelAssembler<Robot, EntityModel<Robot>> {
 
