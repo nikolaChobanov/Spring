@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.Id;
 
 @Data
-//@Entity
 @Document(collection = "robots")
 public class Robot {
 
