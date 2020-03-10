@@ -10,6 +10,4 @@ import java.util.Optional;
 public interface RobotRepository extends MongoRepository<Robot, String> {
 
     Optional<Robot> findRobotById(@Param("id") String name);
-
-
 }
