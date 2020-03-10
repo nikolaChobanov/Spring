@@ -1,1 +1,4 @@
-2020-02-26 20:42:20 INFO  RobotController:79 - Lookup on data for all robots on database
+2020-03-10 15:18:58 INFO  RobotController:80 - Lookup on data for all robots on database
+2020-03-10 15:18:58 INFO  RobotController:64 - Robot with id: 5e6793c2bcdcc16b95e86587 looked up from database
+2020-03-10 15:18:58 INFO  RobotController:131 - Robot with id: 5e6793c2bcdcc16b95e86588 was deleted successfully
+2020-03-10 15:18:58 INFO  RobotController:109 - Robot with id: 5e6793c2bcdcc16b95e86589 received new movement instruction
