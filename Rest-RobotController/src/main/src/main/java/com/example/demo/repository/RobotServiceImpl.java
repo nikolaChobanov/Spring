@@ -13,6 +13,11 @@ public class RobotServiceImpl implements RobotService {
     @Autowired
     private RobotRepository robotRepository;
 
+    @Autowired
+    public RobotServiceImpl(RobotRepository robotRepository) {
+        this.robotRepository = robotRepository;
+    }
+
     @Override
     public Robot insert(Robot robot) {
         return robotRepository.save(robot);
